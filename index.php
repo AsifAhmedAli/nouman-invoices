@@ -3,9 +3,13 @@
 
 <head>
     <?php
+    // $servername = "localhost";
+    // $username = "u679021239_nouman_invoice";
+    // $password = "Roaala@1212";
+    // $dbname = "nouman_invoices_print";
     $servername = "localhost";
-    $username = "u679021239_nouman_invoice";
-    $password = "Roaala@1212";
+    $username = "root";
+    $password = "";
     $dbname = "nouman_invoices_print";
 
     // Create connection
@@ -27,11 +31,11 @@
         <form id="add_new_field" class="col-md-6 mx-auto my-3">
             <div class="form-group my-3">
                 <label for="exampleInputEmail1">Field Value</label>
-                <input type="text" class="form-control" id="fieldValue" value="test" aria-describedby="emailHelp" placeholder="Enter Field Value">
+                <input type="text" class="form-control" id="fieldValue" aria-describedby="emailHelp" placeholder="Enter Field Value">
             </div>
             <div class="form-group my-3">
                 <label for="exampleInputPassword1">Amount</label>
-                <input type="number" class="form-control" value="500" id="amount" placeholder="Amount">
+                <input type="number" class="form-control" id="amount" placeholder="Amount">
             </div>
             <button type="button" onclick="myfunction()" class="btn btn-primary">Add</button>
         </form>
@@ -39,22 +43,30 @@
     <form id="add_new_field1" class="col-md-6 mx-auto my-3">
         <div class="form-group my-3">
             <label for="exampleInputPassword1">Starting Bill Number</label>
-            <input type="number" class="form-control" value="500" id="billno" placeholder="Starting Bill Number">
+            <input type="number" class="form-control" id="billno" placeholder="Starting Bill Number">
         </div>
         <button type="button" onclick="addBillNumber()" class="btn btn-primary">Add</button>
+    </form>
+
+    <form id="add_new_field2" class="col-md-6 mx-auto my-3">
+        <div class="form-group my-3">
+            <label for="exampleInputPassword3">Today Date</label>
+            <input type="date" class="form-control" id="todaydate" placeholder="Today Date">
+        </div>
+        <button type="button" onclick="addBilltodaydate()" class="btn btn-primary">Add</button>
     </form>
     <div class="container" id="invoice_container">
         <?php
 
-        $sql = "SELECT * FROM bill_details";
-        $result = $conn->query($sql);
-        $total_rows = $result->num_rows;
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while ($row1 = $result->fetch_assoc()) {
-                $bill_no = $row1['bill_no'];
-            }
-        }
+        // $sql = "SELECT * FROM bill_details";
+        // $result = $conn->query($sql);
+        // $total_rows = $result->num_rows;
+        // if ($result->num_rows > 0) {
+        //     // output data of each row
+        //     while ($row1 = $result->fetch_assoc()) {
+        //         $bill_no = $row1['bill_no'];
+        //     }
+        // }
         // echo $total_rows;
         ?>
         <?php
@@ -88,7 +100,7 @@
                             <div style="width: auto;"><p>Bank Of Punjab</p><p>BOP Chechian Branch Dinga Road Gujrat</p><p>A/C Number: 6020218500100017</p></div>
                         </div>
                         <div class="row">
-                        <div style="width: auto;" class="col"><p>Bill No: <span id="billnoa' . $i . '"></span></p><p>Date Created: ' . $today_date . '</p><p>Due Date: ' . $due_whole_date . '</p></div>
+                        <div style="width: auto;" class="col"><p>Bill No: <span id="billnoa' . $i . '"></span></p><p>Date Created: <span id="todaydatefield' . $i . '"></span></p><p>Due Date: <span id="duedatefield' . $i . '"></span></p></div>
                         <div style="width: auto;" class="col"><p>Student Name: ' . $row['std_name'] . '</p><p>Father Name: ' . $row['fathername'] . '</p><p>Registration Number: ' . $row['Registrationnumber'] . '</p></div>
                         </div>
 
@@ -141,7 +153,7 @@
                             <div style="width: auto;"><p>Bank Of Punjab</p><p>BOP Chechian Branch Dinga Road Gujrat</p><p>A/C Number: 6020218500100017</p></div>
                         </div>
                         <div class="row">
-                        <div style="width: auto;" class="col"><p>Bill No: <span id="billnoaa1' . $i . '"></span></p><p>Date Created: ' . $today_date . '</p><p>Due Date: ' . $due_whole_date . '</p></div>
+                        <div style="width: auto;" class="col"><p>Bill No: <span id="billnoaa1' . $i . '"></span></p><p>Date Created: <span id="todaydatefielda1' . $i . '"></span></p><p>Due Date: <span id="duedatefielda1' . $i . '"></p></div>
                         <div style="width: auto;" class="col"><p>Student Name: ' . $row['std_name'] . '</p><p>Father Name: ' . $row['fathername'] . '</p><p>Registration Number: ' . $row['Registrationnumber'] . '</p></div>
                         </div>
 
@@ -201,7 +213,7 @@
                         <div style="width: auto;"><p>Bank Of Punjab</p><p>BOP Chechian Branch Dinga Road Gujrat</p><p>A/C Number: 6020218500100017</p></div>
                     </div>
                     <div class="row">
-                    <div style="width: auto;" class="col"><p>Bill No: <span id="billnoaaa2' . $i . '"></span></p><p>Date Created: ' . $today_date . '</p><p>Due Date: ' . $due_whole_date . '</p></div>
+                    <div style="width: auto;" class="col"><p>Bill No: <span id="billnoaaa2' . $i . '"></span></p><p>Date Created: <span id="todaydatefieldaa2' . $i . '"></span></p><p>Due Date: <span id="duedatefieldaa2' . $i . '"></p></div>
                     <div style="width: auto;" class="col"><p>Student Name: ' . $row['std_name'] . '</p><p>Father Name: ' . $row['fathername'] . '</p><p>Registration Number: ' . $row['Registrationnumber'] . '</p></div>
                     </div>
 
@@ -254,7 +266,7 @@
                         <div style="width: auto;"><p>Bank Of Punjab</p><p>BOP Chechian Branch Dinga Road Gujrat</p><p>A/C Number: 6020218500100017</p></div>
                     </div>
                     <div class="row">
-                    <div style="width: auto;" class="col"><p>Bill No: <span id="billnoaaaa3' . $i . '"></span></p><p>Date Created: ' . $today_date . '</p><p>Due Date: ' . $due_whole_date . '</p></div>
+                    <div style="width: auto;" class="col"><p>Bill No: <span id="billnoaaaa3' . $i . '"></span></p><p>Date Created: <span id="todaydatefieldaaa3' . $i . '"></span></p><p>Due Date: <span id="duedatefieldaaa3' . $i . '"></p></div>
                     <div style="width: auto;" class="col"><p>Student Name: ' . $row['std_name'] . '</p><p>Father Name: ' . $row['fathername'] . '</p><p>Registration Number: ' . $row['Registrationnumber'] . '</p></div>
                     </div>
 
@@ -482,6 +494,40 @@
                 // console.log("Waited for 5 seconds!");
                 printWindow.print();
             }, 1000); // 5000 milliseconds = 5 seconds
+
+        }
+
+        function addBilltodaydate() {
+            var todaydate = document.getElementById("todaydate").value;
+            var total_rows = getCookie("total_rows");
+            for (var i = 0; i < total_rows; i++) {
+                if (todaydate) {
+
+                    document.getElementById(`todaydatefield${i}`).textContent = todaydate;
+                    document.getElementById(`todaydatefielda1${i}`).textContent = todaydate;
+                    document.getElementById(`todaydatefieldaa2${i}`).textContent = todaydate;
+                    document.getElementById(`todaydatefieldaaa3${i}`).textContent = todaydate;
+                    // <span id="duedatefield' . $i . '">
+                    // Convert the input value to a Date object
+                    var date = new Date(todaydate);
+
+                    // Increase the date by 10 days
+                    date.setDate(date.getDate() + 10);
+
+                    // Format the new date to YYYY-MM-DD
+                    var newDate = date.toISOString().split('T')[0];
+
+                    // Display the new date or set it back to the input element
+                    document.getElementById(`duedatefield${i}`).textContent = newDate;
+                    document.getElementById(`duedatefielda1${i}`).textContent = newDate;
+                    document.getElementById(`duedatefieldaa2${i}`).textContent = newDate;
+                    document.getElementById(`duedatefieldaaa3${i}`).textContent = newDate;
+                    // Alternatively, if you want to set it back to the input element:
+                    // document.getElementById("todaydate").value = newDate;
+                } else {
+                    alert("Please select a date first.");
+                }
+            }
 
         }
     </script>
